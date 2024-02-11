@@ -4,8 +4,8 @@ extensions:
 
 syntax:
   - keywords:
-    - normal:
-      - match: "\b(?:as|const|crate|enum|extern|fn|impl|let|match|mod|move|mut|pub|ref|return|static|struct|super|trait|type|unsafe|use|where)\b"
+    - general:
+      - match: "\b(?:as|const|enum|fn|impl|let|match|move|mut|ref|return|static|struct|super|trait|type|unsafe|use|where)\b"
       - scope: keywords.normal
     - control-flow:
       - match: "\b(?:break|continue|for|if|else|in|loop|while)\b"
@@ -13,6 +13,9 @@ syntax:
     - visibility:
       - match: "\b(?:pub|extern|priv)\b"
       - scope: keywords.visibility
+    - module:
+      - match: "\b(?:mod|crate|super)\b"
+      - scope: keywords.module
     - special:
       - match: "\b(?:self|Self)\b"
       - scope: keywords.special
