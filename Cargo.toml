@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 regex = "1.10.3"
 serde = { version = "1.0.196", features = ["derive"] }
+serde_yaml = "0.9.31"
