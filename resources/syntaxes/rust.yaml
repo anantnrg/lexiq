@@ -1,0 +1,8 @@
+name: Rust
+extensions: 
+  - rs
+
+syntax:
+  - keywords:
+    - strict:
+      - match: "\b(?:)"
