@@ -8,8 +8,11 @@ syntax:
       - match: "\b(?:as|const|crate|enum|extern|fn|impl|let|match|mod|move|mut|pub|ref|return|static|struct|super|trait|type|unsafe|use|where)\b"
       - scope: keywords.normal
     - control-flow:
-      - match: "\b(?:break|continue|for|if|else|in|let|loop|while)\b"
+      - match: "\b(?:break|continue|for|if|else|in|loop|while)\b"
       - scope: keywords.control-flow
+    - visibility:
+      - match: "\b(?:pub|extern|priv)\b"
+      - scope: keywords.visibility
     - special:
       - match: "\b(?:self|Self)\b"
-      - scope: keywords.control-flow
+      - scope: keywords.special
