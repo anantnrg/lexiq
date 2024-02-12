@@ -6,65 +6,65 @@ syntax:
   - keywords:
     - general:
       - match: '\b(?:as|fn|impl|match|move|mut|ref|return|unsafe|use|where)\b'
-      - scope: keywords.normal
+        scope: keywords.normal
     - control-flow:
       - match: '\b(?:break|continue|for|if|else|in|loop|while)\b'
-      - scope: keywords.control-flow
+        scope: keywords.control-flow
     - visibility:
       - match: '\b(?:pub|extern|priv)\b'
-      - scope: keywords.visibility
+        scope: keywords.visibility
     - module:
       - match: '\b(?:mod|crate|super)\b'
-      - scope: keywords.module
+        scope: keywords.module
     - storage:
       - match: '\b(?:let|const|mut|enum|static|struct|trait|type)\b'
-      - scope: keywords.storage
+        scope: keywords.storage
     - special:
       - match: '(?:(?<=\s)|^)(?:self|Self|async|await|dyn|''static)(?=\s|$)'
-      - scope: keywords.special
+        scope: keywords.special
     - reserved:
       - match: '\b(?:abstract|become|box|do|in|macro|override|typeof|unsized|virtual|yield|try)\b'
-      - scope: keywords.reserved
+        scope: keywords.reserved
   - punctuation:
       - square:
         - match: '(?:\[|\])'
-        - scope: punctuation.square-brackets
+          scope: punctuation.square-brackets
       - parens:
         - match: '(?:\(|\))'
-        - scope: punctuation.parens
+          scope: punctuation.parens
       - curly:
         - match: '(?:\{|\})'
-        - scope: punctuation.curly
+          scope: punctuation.curly
       - angle:
         - match: '(?:\<|\>)'
-        - scope: punctuation.angle
+          scope: punctuation.angle
       - pipe:
         - match: '(?:\||)'
-        - scope: punctuation.pipe
+          scope: punctuation.pipe
       - backslash:
         - match: '(?:\\|)'
-        - scope: punctuation.backslash
+          scope: punctuation.backslash
       - forward-slash:
         - match: '(?:\/|)'
-        - scope: punctuation.forward-slash
+          scope: punctuation.forward-slash
       - ampersand:
         - match: '(?:\&|)'
-        - scope: punctuation.ampersand
+          scope: punctuation.ampersand
       - bang:
         - match: '(?:\!|)'
-        - scope: punctuation.bang
+          scope: punctuation.bang
       - plus:
         - match: '(?:\+|)'
-        - scope: punctuation.plus
+          scope: punctuation.plus
       - minus:
         - match: '(?:\-|)'
-        - scope: punctuation.minus
+          scope: punctuation.minus
       - asterisk:
         - match: '(?:\*|)'
-        - scope: punctuation.asterisk
+          scope: punctuation.asterisk
       - modulus:
         - match: '(?:\%|)'
-        - scope: punctuation.modulus
+          scope: punctuation.modulus
   - data: 
     - string:
         - match: '(?:\")'
