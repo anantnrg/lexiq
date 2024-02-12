@@ -22,7 +22,7 @@ pub struct Rule {
 }
 
 impl Grammar {
-    pub fn new(name: String, grammar: PathBuf) -> Self {
+    pub fn new(grammar: PathBuf) -> Self {
         let mut file = String::new();
         File::open(grammar)
             .expect("Couldn't find the specified grammar file")
