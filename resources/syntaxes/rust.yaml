@@ -47,3 +47,21 @@ syntax:
       - forward-slash:
         - match: '(?:\/|)'
         - scope: punctuation.forward-slash
+      - ampersand:
+        - match: '(?:\&|)'
+        - scope: punctuation.ampersand
+      - bang:
+        - match: '(?:\!|)'
+        - scope: punctuation.bang
+      - plus:
+        - match: '(?:\+|)'
+        - scope: punctuation.plus
+      - minus:
+        - match: '(?:\-|)'
+        - scope: punctuation.minus
+      - asterisk:
+        - match: '(?:\*|)'
+        - scope: punctuation.asterisk
+      - modulus:
+        - match: '(?:\%|)'
+        - scope: punctuation.modulus
