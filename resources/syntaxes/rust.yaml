@@ -35,3 +35,9 @@ syntax:
       - curly:
         - match: '(?:\{|\})'
         - scope: punctuation.curly
+      - angle:
+        - match: '(?:\<|\>)'
+        - scope: punctuation.angle
+      - pipe:
+        - match: '(?:\||)'
+        - scope: punctuation.pipe
