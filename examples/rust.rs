@@ -9,6 +9,4 @@ fn main() {
             .unwrap()
             .join("../resources/syntaxes/rust.yaml"),
     ));
-
-    let parse = Lexiq::new(String::from("Rust"), grammar);
 }
