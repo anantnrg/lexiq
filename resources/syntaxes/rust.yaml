@@ -68,5 +68,19 @@ syntax:
   - data: 
     - string:
         - match: '(?:\")'
+          scope: data.string
     - char:
         - match: '(?:\'')'
+          scope: data.char
+    - integer:
+        - match: '\b(?:\d+)\b'
+          scope: data.integer
+    - float:
+        - match: '\b(?:\d+\.\d+)\b'
+          scope: data.float
+    - hexadecimal:
+        - match: '\b(?:0x[0-9A-Fa-f]+)\b'
+          scope: data.hex
+    - binary:
+        - match: '\b(?:0b[01]+)\b'
+          scope: data.binary
