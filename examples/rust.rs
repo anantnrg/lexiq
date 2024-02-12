@@ -1,6 +1,6 @@
 use std::path::{Path, PathBuf};
 
-use lexiq::{grammar::Grammar, Lexiq};
+use lexiq::grammar::Grammar;
 
 fn main() {
     let grammar = Grammar::new(PathBuf::from(
