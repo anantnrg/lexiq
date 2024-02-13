@@ -2,24 +2,36 @@ name: Rust
 extensions:
   - rs
 
-# Note to self: add comments for each rule
-
 syntax:
   keywords:
     - match: '\b(?:as|fn|impl|match|move|mut|ref|return|unsafe|use|where)\b'
       scope: keywords.normal
+      comment: "Normal keywords"
+
     - match: '\b(?:break|continue|for|if|else|in|loop|while)\b'
       scope: keywords.control-flow
+      comment: "Control flow keywords"
+
     - match: '\b(?:pub|extern|priv)\b'
       scope: keywords.visibility
+      comment: "Visibility keywords"
+
     - match: '\b(?:mod|crate|super)\b'
       scope: keywords.module
+      comment: "Module keywords"
+
     - match: '\b(?:let|const|mut|enum|static|struct|trait|type)\b'
       scope: keywords.storage
+      comment: "Storage keywords"
+
     - match: '(?:(?<=\s)|^)(?:self|Self|async|await|dyn|''static)(?=\s|$)'
       scope: keywords.special
+      comment: "Special keywords"
+
     - match: '\b(?:abstract|become|box|do|in|macro|override|typeof|unsized|virtual|yield|try)\b'
       scope: keywords.reserved
+      comment: "Reserved keywords"
+
   punctuation:
     - match: '(?:\[|\])'
       scope: punctuation.square-brackets
