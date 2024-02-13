@@ -1,22 +1,24 @@
 use std::{fs::File, io::Read, path::PathBuf};
 
-use serde::Deserialize;
-use serde::Deserializer;
+use serde::{Deserialize, Serialize};
 
-#[derive(Deserialize, Debug, Clone)]
+#[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct Grammar {
     pub name: String,
     pub extensions: Vec<String>,
-    pub syntax: Vec<(String, String)>,
+    pub syntax: Syntax,
 }
 
-#[derive(Debug, Clone)]
-pub struct Group {
-    pub rules: Vec<Rule>,
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct Syntax {
+    pub keywords: Vec<Rule>,
+    pub punctuation: Vec<Rule>,
+    pub data: Vec<Rule>,
 }
 
-#[derive(Deserialize, Debug, Clone)]
+#[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct Rule {
+    #[serde(rename = "match")]
     pub regex: String,
     pub scope: String,
 }
@@ -36,20 +38,25 @@ impl Grammar {
 
         grammar
     }
-}
 
-impl<'de> Deserialize<'de> for Group {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-    where
-        D: Deserializer<'de>,
-    {
-        #[derive(Deserialize)]
-        struct Inner {
-            #[serde(flatten)]
-            rules: Vec<Rule>,
+    pub fn default() -> Self {
+        Grammar {
+            name: String::from("Rust"),
+            extensions: vec!["rs".to_string()],
+            syntax: Syntax {
+                data: vec![Rule {
+                    regex: "".to_string(),
+                    scope: "".to_string(),
+                }],
+                keywords: vec![Rule {
+                    regex: "".to_string(),
+                    scope: "".to_string(),
+                }],
+                punctuation: vec![Rule {
+                    regex: "".to_string(),
+                    scope: "".to_string(),
+                }],
+            },
         }
-
-        let inner = Inner::deserialize(deserializer)?;
-        Ok(Group { rules: inner.rules })
     }
 }
