@@ -56,22 +56,10 @@ impl Grammar {
             name: String::from("Rust"),
             extensions: vec!["rs".to_string()],
             syntax: Syntax {
-                data: vec![Rule {
-                    regex: "".to_string(),
-                    scope: "".to_string(),
-                }],
-                keywords: vec![Rule {
-                    regex: "".to_string(),
-                    scope: "".to_string(),
-                }],
-                punctuation: vec![Rule {
-                    regex: "".to_string(),
-                    scope: "".to_string(),
-                }],
-                comments: vec![Rule {
-                    regex: "".to_string(),
-                    scope: "".to_string(),
-                }],
+                data: vec![],
+                keywords: vec![],
+                punctuation: vec![],
+                comments: vec![],
             },
         }
     }
