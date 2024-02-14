@@ -66,14 +66,14 @@ syntax:
       scope: data.char
     - match: \b(?<!\w)(?:\d+)(?![\'"])(?!\w)
       scope: data.integer
-    - match: \b(?:\d+\.\d+)\b
+    - match: \b(?<!\w)(?:\d+\.\d+)(?![\'"])(?!\w)
       scope: data.float
-    - match: \b(?:0x[0-9A-Fa-f]+)\b
+    - match: \b(?<!\w)(?:0x[0-9A-Fa-f]+)(?![\'"])(?!\w)
       scope: data.hex
-    - match: \b(?:0b[01]+)\b
+    - match: \b(?<!\w)(?:0b[01]+)(?![\'"])(?!\w)
       scope: data.binary
   comment:
-    - match: "//.*$"
+    - match: \/\/.*$
       scope: comment.line
-    - match: /\*([^*]|(\*[^/]))*\*/
+    - match: \/\*([^*]|(\*[^/]))*\*\/
       scope: comment.block
