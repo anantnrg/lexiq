@@ -72,7 +72,7 @@ syntax:
       scope: data.hex
     - match: \b(?<!\w)(?:0b[01]+)(?![\'"])(?!\w)
       scope: data.binary
-  comment:
+  comments:
     - match: \/\/.*$
       scope: comment.line
     - match: \/\*([^*]|(\*[^/]))*\*\/

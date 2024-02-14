@@ -14,6 +14,7 @@ pub struct Syntax {
     pub keywords: Vec<Rule>,
     pub punctuation: Vec<Rule>,
     pub data: Vec<Rule>,
+    pub comments: Vec<Rule>,
 }
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
@@ -53,6 +54,10 @@ impl Grammar {
                     scope: "".to_string(),
                 }],
                 punctuation: vec![Rule {
+                    regex: "".to_string(),
+                    scope: "".to_string(),
+                }],
+                comments: vec![Rule {
                     regex: "".to_string(),
                     scope: "".to_string(),
                 }],
