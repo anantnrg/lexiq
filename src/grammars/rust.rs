@@ -42,7 +42,13 @@ impl RustLang {
             rule!(r#"\b[A-Z][a-zA-Z0-9_]*\b"#, "keywords.type"),
         ]
     }
-    pub fn punctuation() -> Vec<Rule> {}
-    pub fn data() -> Vec<Rule> {}
-    pub fn comments() -> Vec<Rule> {}
+    pub fn punctuation() -> Vec<Rule> {
+        vec![]
+    }
+    pub fn data() -> Vec<Rule> {
+        vec![rule!(r#"\b\d+\b"#, "data.decimal"), rule!(r#"\b\d+(\.\d+)?[eE][+-]?\d+\b"#, "data.float")]
+    }
+    pub fn comments() -> Vec<Rule> {
+        vec![]
+    }
 }
