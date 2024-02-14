@@ -60,9 +60,9 @@ syntax:
     - match: '(?:\%|)'
       scope: punctuation.modulus
   data:
-    - match: '(?:\")'
+    - match: '(?:"([^"\\]|\\.)*")'
       scope: data.string
-    - match: '(?:\'')'
+    - match: r"(?:'([^'\\]|\\.)+')"
       scope: data.char
     - match: '\b(?:\d+)\b'
       scope: data.integer
@@ -72,3 +72,8 @@ syntax:
       scope: data.hex
     - match: '\b(?:0b[01]+)\b'
       scope: data.binary
+  comment:
+    - match: "//.*$"
+      scope: comment.line
+    - match: '/\*([^*]|(\*[^/]))*\*/'
+      scope: comment.block
