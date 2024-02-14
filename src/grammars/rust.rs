@@ -39,6 +39,7 @@ impl RustLang {
             rule!(r#"\b[A-Z0-9_]+\b"#, "keywords.upper-snakecase"),
             rule!(r#"\b[iu](?:8|16|32|64|128|size)\b"#, "keywords.integer"),
             rule!(r#"\bf(32|64)\b"#, "keywords.float"),
+            rule!(r#"\b[A-Z][a-zA-Z0-9_]*\b"#, "keywords.type"),
         ]
     }
     pub fn punctuation() -> Vec<Rule> {}
