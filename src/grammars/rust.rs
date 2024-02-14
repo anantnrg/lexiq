@@ -2,6 +2,17 @@ use crate::grammar::{Grammar, Rule, Syntax};
 
 pub struct RustLang;
 
+const NonRawIndentifier: &'static str = "";
+const Identifier: &'static str = "";
+const CamelCaseIdentifier: &'static str = "";
+const Lifetime: &'static str = "";
+const EscapedByte: &'static str = "";
+const IntegerSuffixes: &'static str = "";
+const FloatSuffixes: &'static str = "";
+const FloatExponent: &'static str = "";
+const DecimalLiteral: &'static str = "";
+const TypeIdentifier: &'static str = "";
+
 impl RustLang {
     pub fn grammar() -> Grammar {
         Grammar {
