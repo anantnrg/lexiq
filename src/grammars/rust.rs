@@ -3,10 +3,10 @@ use crate::rule;
 
 pub struct RustLang;
 
-const NON_RAW_INDENTIFIER: &'static str = r#"[[:alpha:]][_[:alnum:]]*|_[_[:alnum:]]+"#;
-const IDENTIFIER: &'static str = r#"(?:(?:(?:r\#)?{{non_raw_ident}})\b)"#;
-const CAMEL_CASE_IDENTIFIER: &'static str = r#"\b_*[A-Z][a-zA-Z0-9_]*[a-z][a-zA-Z0-9_]*\b"#;
-const LIFETIME: &'static str = r#"'(?:_|{{non_raw_ident}})(?!\')\b"#;
+const IDENTIFIER: &'static str = r#"\b[a-z_][a-z0-9_]*\b"#;
+const CAMEL_CASE_IDENTIFIER: &'static str = r#"\b[A-Z][a-z0-9]*([A-Z][a-z0-9]*)*\b
+"#;
+const LIFETIME: &'static str = r#"'(?:_|[[:alpha:]][_[:alnum:]]*|_[_[:alnum:]]+)(?!\')\b"#;
 const ESCAPED_BYTE: &'static str = r#"\\([nrt0\"'\\]|x\h{2})"#;
 const ESCAPED_CHAR: &'static str = r#"\\([nrt0\"''\\]|x[0-7]\h|u\{(?:\h_*){1,6}\})"#;
 const INTEGER_SUFFIXES: &'static str = r#"[iu](?:8|16|32|64|128|size)"#;
@@ -29,7 +29,16 @@ impl RustLang {
             },
         }
     }
-    pub fn keywords() -> Vec<Rule> {}
+    pub fn keywords() -> Vec<Rule> {
+        vec![
+            rule!(r#"\b[a-z_][a-z0-9_]*\b"#, "keywords.identifier"),
+            rule!(
+                r#"\b[A-Z][a-z0-9]*([A-Z][a-z0-9]*)*\b"#,
+                "keywords.camelcase-ident"
+            ),
+            rule!(r#"\b[A-Z0-9_]+\b"#, "keywords.upper-snakecase"),
+        ]
+    }
     pub fn punctuation() -> Vec<Rule> {}
     pub fn data() -> Vec<Rule> {}
     pub fn comments() -> Vec<Rule> {}
