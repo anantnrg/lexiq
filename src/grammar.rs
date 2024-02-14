@@ -24,6 +24,13 @@ pub struct Rule {
     pub scope: String,
 }
 
+#[derive(Debug, Clone)]
+pub struct Match {
+    pub start: usize,
+    pub end: usize,
+    pub scope: String,
+}
+
 impl Grammar {
     pub fn new(grammar: PathBuf) -> Self {
         let mut file = String::new();
@@ -38,6 +45,10 @@ impl Grammar {
         println!("{:?}", grammar);
 
         grammar
+    }
+
+    pub fn get_comments(&self, code: String) -> Vec<Match> {
+        vec![]
     }
 
     pub fn default() -> Self {
