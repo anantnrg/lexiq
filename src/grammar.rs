@@ -57,3 +57,13 @@ impl Grammar {
         }
     }
 }
+
+#[macro_export]
+macro_rules! rule {
+    ($regex:expr, $scope:expr) => {
+        Rule {
+            regex: $regex.to_string(),
+            scope: $scope.to_string(),
+        }
+    };
+}

@@ -1,4 +1,5 @@
 use crate::grammar::{Grammar, Rule, Syntax};
+use crate::rule;
 
 pub struct RustLang;
 
