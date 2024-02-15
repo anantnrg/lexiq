@@ -46,7 +46,13 @@ impl RustLang {
         vec![]
     }
     pub fn data() -> Vec<Rule> {
-        vec![rule!(r#"\b\d+\b"#, "data.decimal"), rule!(r#"\b\d+(\.\d+)?[eE][+-]?\d+\b"#, "data.float")]
+        vec![
+            rule!(
+                r#"\b\d+(\_\d+)*([uUiIfF](8|16|32|64|size)?)?\b"#,
+                "data.decimal"
+            ),
+            rule!(r#"\b\d+(\.\d+)?[eE][+-]?\d+\b"#, "data.float"),
+        ]
     }
     pub fn comments() -> Vec<Rule> {
         vec![]
