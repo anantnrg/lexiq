@@ -1,4 +1,4 @@
-use regex::Regex;
+use regex::{Match, Regex};
 
 #[derive(Debug, Clone)]
 pub struct Grammar {
@@ -16,7 +16,7 @@ pub struct Rule {
 }
 
 #[derive(Debug, Clone)]
-pub struct Match {
+pub struct Token {
     pub start: usize,
     pub end: usize,
     pub scope: String,
@@ -71,26 +71,41 @@ impl Grammar {
 }
 
 impl CompiledGrammar {
-    pub fn tokenize<S: AsRef<str>>(&self, input: S) -> Vec<Match> {
-        let mut matches: Vec<Match> = Vec::new();
-        let mut current_position = 0;
-        'outer: while current_position < input.as_ref().len() {
+    pub fn tokenize<S: AsRef<str>>(&mut self, input: S) -> Vec<Token> {
+        let input = input.as_ref();
+        let mut tokens: Vec<Token> = Vec::new();
+        let mut cursor = 0usize;
+
+        while cursor < input.len() {
+            let mut found = false;
             for rule in &self.rules {
-                if let Some(mat) = rule.regex.find_at(input.as_ref(), current_position) {
-                    let (start, end) = (mat.start(), mat.end());
-                    if !matches.iter().any(|m| m.start == start && m.end == end) {
-                        matches.push(Match {
+                if let Some(mat) = rule.regex.find(&input[cursor..]) {
+                    if mat.start() != 0 {
+                        continue;
+                    }
+                    let start = cursor + mat.start();
+                    let end = cursor + mat.end();
+
+                    if !tokens
+                        .iter()
+                        .any(|token| token.start <= start && token.end >= end)
+                    {
+                        found = true;
+                        tokens.push(Token {
                             start,
                             end,
                             scope: rule.scope.clone(),
                         });
-                        current_position = end;
-                        continue 'outer;
+                        cursor = end;
+                        break;
                     }
                 }
             }
-            break;
+            if !found {
+                cursor += 1; // No match found, advance cursor
+            }
         }
-        matches
+
+        tokens
     }
 }

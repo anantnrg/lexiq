@@ -38,14 +38,16 @@ impl RustLang {
                 "keywords.camelcase-ident",
                 IDENTIFIERS
             ),
-            rule!(r#"\b[A-Z0-9_]+\b"#, "keywords.upper-snakecase", IDENTIFIERS),
+            rule!(
+                r#"\b[A-Z_]*[A-Z][A-Z0-9_]*\b"#,
+                "keywords.upper-snakecase",
+                IDENTIFIERS
+            ),
             rule!(
                 r#"\b[iu](?:8|16|32|64|128|size)\b"#,
                 "keywords.integer",
                 TYPES
             ),
-            rule!(r#"\bf(32|64)\b"#, "keywords.float", TYPES),
-            rule!(r#"\b[A-Z][a-zA-Z0-9_]*\b"#, "keywords.type", TYPES),
         ]
     }
     pub fn punctuation() -> Vec<Rule> {
@@ -54,18 +56,22 @@ impl RustLang {
     pub fn data() -> Vec<Rule> {
         vec![
             rule!(
-                r#"\b\d+(\_\d+)*([uUiIfF](8|16|32|64|size)?)?\b"#,
+                r#"\b\d+(?:_\d+)*(?:_[uUiIfF](?:8|16|32|64|size)?)?\b"#,
                 "data.decimal",
                 NUMBERS
             ),
             rule!(r#"\b\d+(\.\d+)?[eE][+-]?\d+\b"#, "data.float", NUMBERS),
-            rule!(r#"'\w+"#, "data.lifetime", LIFETIMES),
+            rule!(r#"\b'\w+"\b"#, "data.lifetime", LIFETIMES),
         ]
     }
     pub fn comments() -> Vec<Rule> {
         vec![
             rule!(r#"\/\/.*"#, "comments.line", COMMENTS),
-            rule!(r#"\/\*[\s\S]*?\*\/"#, "comments.block", COMMENTS),
+            rule!(
+                r#"\/\*[^*]*\*+([^/*][^*]*\*+)*\/"#,
+                "comments.block",
+                COMMENTS
+            ),
         ]
     }
 }
