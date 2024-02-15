@@ -32,28 +32,31 @@ impl RustLang {
         vec![
             rule!(
                 r#"\b[a-z_][a-z0-9_]*\b"#,
-                "keywords.identifier",
+                "identifiers.snakecase",
                 IDENTIFIERS
             ),
             rule!(
                 r#"\b[A-Z][a-z0-9]*([A-Z][a-z0-9]*)*\b"#,
-                "keywords.camelcase-ident",
+                "identifiers.camelcase",
                 IDENTIFIERS
             ),
             rule!(
                 r#"\b[A-Z_]*[A-Z][A-Z0-9_]*\b"#,
-                "keywords.upper-snakecase",
+                "identifiers.upper-snakecase",
                 IDENTIFIERS
             ),
         ]
     }
     pub fn keywords() -> Vec<Rule> {
-        vec![]
+        vec![
+            rule!(r#"\bas\b"#, "keywords.as", KEYWORDS),
+            rule!(r#"\bbreak\b"#, "keywords.break", KEYWORDS),
+        ]
     }
     pub fn types() -> Vec<Rule> {
         vec![rule!(
             r#"\b[iu](?:8|16|32|64|128|size)\b"#,
-            "keywords.integer",
+            "types.integer",
             TYPES
         )]
     }

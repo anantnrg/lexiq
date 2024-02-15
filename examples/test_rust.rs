@@ -4,7 +4,15 @@ fn main() {
     let mut grammar = RustLang::grammar();
     grammar.sort();
     let regexes = grammar.compile().tokenize(
-        "// thfis is a comment\n/* Block comment */\nhello_world\nHelloWolrd\nHELOO_WROLD\ni32\n32",
+        r#"// thfis is a comment
+/* Block comment */
+hello_world
+HelloWolrd
+HELOO_WROLD
+i32
+32
+as
+break"#,
     );
     println!("{regexes:?}");
 }
