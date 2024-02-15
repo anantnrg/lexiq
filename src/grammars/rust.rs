@@ -15,7 +15,9 @@ const PUNCTUATION: usize = 7;
 impl RustLang {
     pub fn grammar() -> Grammar {
         let mut rules = Vec::new();
+        rules.extend(Self::identifiers());
         rules.extend(Self::keywords());
+        rules.extend(Self::types());
         rules.extend(Self::comments());
         rules.extend(Self::data());
         rules.extend(Self::punctuation());
@@ -26,7 +28,7 @@ impl RustLang {
             sorted: false,
         }
     }
-    pub fn keywords() -> Vec<Rule> {
+    pub fn identifiers() -> Vec<Rule> {
         vec![
             rule!(
                 r#"\b[a-z_][a-z0-9_]*\b"#,
@@ -43,12 +45,17 @@ impl RustLang {
                 "keywords.upper-snakecase",
                 IDENTIFIERS
             ),
-            rule!(
-                r#"\b[iu](?:8|16|32|64|128|size)\b"#,
-                "keywords.integer",
-                TYPES
-            ),
         ]
+    }
+    pub fn keywords() -> Vec<Rule> {
+        vec![]
+    }
+    pub fn types() -> Vec<Rule> {
+        vec![rule!(
+            r#"\b[iu](?:8|16|32|64|128|size)\b"#,
+            "keywords.integer",
+            TYPES
+        )]
     }
     pub fn punctuation() -> Vec<Rule> {
         vec![]
