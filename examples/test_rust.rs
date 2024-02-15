@@ -12,7 +12,8 @@ HELOO_WROLD
 i32
 32
 as
-break"#,
+break
+let mut hellow = "hello""#,
     );
     println!("{regexes:?}");
 }
