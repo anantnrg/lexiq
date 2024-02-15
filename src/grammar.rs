@@ -23,33 +23,6 @@ pub struct Match {
     pub scope: String,
 }
 
-impl Grammar {
-    pub fn new(name: String, extensions: Vec<String>, syntax: Syntax) -> Self {
-        Grammar {
-            name,
-            extensions,
-            syntax,
-        }
-    }
-
-    pub fn get_comments(&self, code: String) -> Vec<Match> {
-        vec![]
-    }
-
-    pub fn default() -> Self {
-        Grammar {
-            name: String::from("Rust"),
-            extensions: vec!["rs".to_string()],
-            syntax: Syntax {
-                data: vec![],
-                keywords: vec![],
-                punctuation: vec![],
-                comments: vec![],
-            },
-        }
-    }
-}
-
 #[macro_export]
 macro_rules! rule {
     ($regex:expr, $scope:expr) => {

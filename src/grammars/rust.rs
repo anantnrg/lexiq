@@ -1,19 +1,19 @@
-use crate::grammar::{Grammar, Rule, Syntax};
+use crate::grammar::{Grammar, Rule};
 use crate::rule;
 
 pub struct RustLang;
 
 impl RustLang {
     pub fn grammar() -> Grammar {
+        let mut rules = Vec::new();
+        rules.extend(Self::keywords());
+        rules.extend(Self::comments());
+        rules.extend(Self::data());
+        rules.extend(Self::punctuation());
         Grammar {
             name: String::from("Rust"),
             extensions: vec![String::from("rs")],
-            syntax: Syntax {
-                keywords: Self::keywords(),
-                punctuation: Self::punctuation(),
-                data: Self::data(),
-                comments: Self::comments(),
-            },
+            rules,
         }
     }
     pub fn keywords() -> Vec<Rule> {
