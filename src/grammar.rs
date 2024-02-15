@@ -79,7 +79,7 @@ impl CompiledGrammar {
         while cursor < input.len() {
             let mut found = false;
             for rule in &self.rules {
-                if let Some(mat) = rule.regex.find(&input[cursor..]) {
+                if let Ok(Some(mat)) = rule.regex.find(&input[cursor..]) {
                     if mat.start() != 0 {
                         continue;
                     }

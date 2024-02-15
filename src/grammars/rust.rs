@@ -86,13 +86,34 @@ impl RustLang {
             rule!(r#"\bmut\b"#, "keywords.vars.mut", KEYWORDS),
             rule!(r#"\breturn\b"#, "keywords.vars.return", KEYWORDS),
         ];
-        let misc = vec![rule!(r#"\bunsafe\b"#, "keywords.misc.unsafe", KEYWORDS)];
+        let misc = vec![
+            rule!(r#"\bunsafe\b"#, "keywords.misc.unsafe", KEYWORDS),
+            rule!(r#"\basync\b"#, "keywords.misc.async", KEYWORDS),
+            rule!(r#"\bawait\b"#, "keywords.misc.await", KEYWORDS),
+            rule!(r#"\bdyn\b"#, "keywords.misc.dyn", KEYWORDS),
+        ];
+        let reserved = vec![
+            rule!(r#"\babstract\b"#, "keywords.reserved.abstract", KEYWORDS),
+            rule!(r#"\bbecome\b"#, "keywords.reserved.become", KEYWORDS),
+            rule!(r#"\bbox\b"#, "keywords.reserved.box", KEYWORDS),
+            rule!(r#"\bdo\b"#, "keywords.reserved.do", KEYWORDS),
+            rule!(r#"\bfinal\b"#, "keywords.reserved.final", KEYWORDS),
+            rule!(r#"\bmacro\b"#, "keywords.reserved.macro", KEYWORDS),
+            rule!(r#"\boverride\b"#, "keywords.reserved.override", KEYWORDS),
+            rule!(r#"\bpriv\b"#, "keywords.reserved.priv", KEYWORDS),
+            rule!(r#"\btypeof\b"#, "keywords.reserved.typeof", KEYWORDS),
+            rule!(r#"\bunsized\b"#, "keywords.reserved.unsized", KEYWORDS),
+            rule!(r#"\bvirtual\b"#, "keywords.reserved.virtual", KEYWORDS),
+            rule!(r#"\byield\b"#, "keywords.reserved.yield", KEYWORDS),
+            rule!(r#"\btry\b"#, "keywords.reserved.try", KEYWORDS),
+        ];
         keywords.extend(control_flow);
         keywords.extend(decls);
         keywords.extend(module);
         keywords.extend(self_);
         keywords.extend(vars);
         keywords.extend(misc);
+        keywords.extend(reserved);
         keywords
     }
     pub fn types() -> Vec<Rule> {
@@ -103,7 +124,53 @@ impl RustLang {
         )]
     }
     pub fn punctuation() -> Vec<Rule> {
-        vec![]
+        vec![
+            rule!(r"\+(?!\+)", "punctuation.plus", PUNCTUATION),
+            rule!(r#"\-(?!\-)"#, "punctuation.minus", PUNCTUATION),
+            rule!(r#"\*(?!\*)"#, "punctuation.star", PUNCTUATION),
+            rule!(r#"\/(?!\/)"#, "punctuation.slash", PUNCTUATION),
+            rule!(r#"\%(?!\%)"#, "punctuation.percent", PUNCTUATION),
+            rule!(r#"\^(?!\^)"#, "punctuation.caret", PUNCTUATION),
+            rule!(r#"\!(?!\!)"#, "punctuation.not", PUNCTUATION),
+            rule!(r#"\&(?!\&)"#, "punctuation.and", PUNCTUATION),
+            rule!(r#"\|(?!\|)"#, "punctuation.or", PUNCTUATION),
+            rule!(r#"\&\&(?!\&)"#, "punctuation.and-and", PUNCTUATION),
+            rule!(r#"\|\|(?!\|)"#, "punctuation.or-or", PUNCTUATION),
+            rule!(r#"\<\<(?!\<)"#, "punctuation.shl", PUNCTUATION),
+            rule!(r#"\>\>(?!\>)"#, "punctuation.shr", PUNCTUATION),
+            rule!(r#"\+\="#, "punctuation.plus-eq", PUNCTUATION),
+            rule!(r#"\-\="#, "punctuation.minus-eq", PUNCTUATION),
+            rule!(r#"\/\="#, "punctuation.slash-eq", PUNCTUATION),
+            rule!(r#"\%\="#, "punctuation.percent-eq", PUNCTUATION),
+            rule!(r#"\^\="#, "punctuation.caret-eq", PUNCTUATION),
+            rule!(r#"\&\="#, "punctuation.and-eq", PUNCTUATION),
+            rule!(r#"\|\="#, "punctuation.or-eq", PUNCTUATION),
+            rule!(r#"\<\<\="#, "punctuation.shl-eq", PUNCTUATION),
+            rule!(r#"\>\>\="#, "punctuation.shl-eq", PUNCTUATION),
+            rule!(r#"\=(?!\=)"#, "punctuation.eq", PUNCTUATION),
+            rule!(r#"\=\=(?!\=)"#, "punctuation.eq-eq", PUNCTUATION),
+            rule!(r#"\!\=(?!\=)"#, "punctuation.ne", PUNCTUATION),
+            rule!(r#"\>(?!\>)"#, "punctuation.gt", PUNCTUATION),
+            rule!(r#"\<(?!\<)"#, "punctuation.lt", PUNCTUATION),
+            rule!(r#"\>\="#, "punctuation.ge", PUNCTUATION),
+            rule!(r#"\<\="#, "punctuation.le", PUNCTUATION),
+            rule!(r#"\@(?!\@)"#, "punctuation.at", PUNCTUATION),
+            rule!(r#"\_(?!\_)"#, "punctuation.underscore", PUNCTUATION),
+            rule!(r#"\.(?!\.)"#, "punctuation.dot", PUNCTUATION),
+            rule!(r#"\.\.(?!\.)"#, "punctuation.dot-dot", PUNCTUATION),
+            rule!(r#"\.\.\.(?!\.)"#, "punctuation.dot-dot-dot", PUNCTUATION),
+            rule!(r#"\.\.\=(?!\=)"#, "punctuation.dot-dot-eq", PUNCTUATION),
+            rule!(r#"\,(?!\,)"#, "punctuation.comma", PUNCTUATION),
+            rule!(r#"\;(?!\;)"#, "punctuation.semi", PUNCTUATION),
+            rule!(r#"\:(?!\:)"#, "punctuation.colon", PUNCTUATION),
+            rule!(r#"\:\:(?!\:)"#, "punctuation.path-sep", PUNCTUATION),
+            rule!(r#"\-\>(?!\>)"#, "punctuation.r-arrow", PUNCTUATION),
+            rule!(r#"\=\>(?!\>)"#, "punctuation.fat-arrow", PUNCTUATION),
+            rule!(r#"\#(?!\#)"#, "punctuation.pound", PUNCTUATION),
+            rule!(r#"\$(?!\$)"#, "punctuation.dollar", PUNCTUATION),
+            rule!(r#"\?(?!\?)"#, "punctuation.question", PUNCTUATION),
+            rule!(r#"\~(?!\~)"#, "punctuation.tilde", PUNCTUATION),
+        ]
     }
     pub fn data() -> Vec<Rule> {
         vec![

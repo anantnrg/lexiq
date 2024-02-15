@@ -13,7 +13,8 @@ i32
 32
 as
 break
-let mut hellow = "hello""#,
+let mut hellow = "hello";
+# !"#,
     );
     println!("{regexes:?}");
 }
