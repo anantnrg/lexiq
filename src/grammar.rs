@@ -1,3 +1,5 @@
+use regex::Regex;
+
 #[derive(Debug, Clone)]
 pub struct Grammar {
     pub name: String,
@@ -20,6 +22,11 @@ pub struct Match {
     pub scope: String,
 }
 
+#[derive(Debug, Clone)]
+pub(crate) struct CompiledGrammar {
+    pub(crate) rules: Vec<(String, Regex)>,
+}
+
 #[macro_export]
 macro_rules! rule {
     ($regex:expr, $scope:expr, $precedence:expr) => {
@@ -33,8 +40,21 @@ macro_rules! rule {
 
 impl Grammar {
     pub fn sort(&mut self) {
-        println!("before sort: {:?}", self.rules);
         self.rules.sort_by_key(|rule| rule.precedence);
-        println!("after sort: {:?}", self.rules);
+    }
+
+    #[allow(private_interfaces)]
+    pub fn compile(&mut self) -> CompiledGrammar {
+        let mut compiled_rules = Vec::new();
+
+        for rule in &self.rules {
+            if let Ok(regex) = Regex::new(&rule.regex) {
+                compiled_rules.push((rule.scope.clone(), regex))
+            }
+        }
+
+        CompiledGrammar {
+            rules: compiled_rules,
+        }
     }
 }
