@@ -52,9 +52,13 @@ impl RustLang {
                 "data.decimal"
             ),
             rule!(r#"\b\d+(\.\d+)?[eE][+-]?\d+\b"#, "data.float"),
+            rule!(r#"'\w+"#, "data.lifetime"),
         ]
     }
     pub fn comments() -> Vec<Rule> {
-        vec![]
+        vec![
+            rule!(r#"\/\/.*"#, "comments.line"),
+            rule!(r#"\/\*[\s\S]*?\*\/"#, "comments.block"),
+        ]
     }
 }
