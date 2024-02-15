@@ -1,19 +1,15 @@
-use std::{fs::File, io::Read, path::PathBuf};
-
-use serde::{Deserialize, Serialize};
-
-#[derive(Deserialize, Serialize, Debug, Clone)]
+#[derive(Debug, Clone)]
 pub struct Grammar {
     pub name: String,
     pub extensions: Vec<String>,
     pub rules: Vec<Rule>,
 }
 
-#[derive(Deserialize, Serialize, Debug, Clone)]
+#[derive(Debug, Clone)]
 pub struct Rule {
-    #[serde(rename = "match")]
     pub regex: String,
     pub scope: String,
+    pub precedence: usize,
 }
 
 #[derive(Debug, Clone)]
@@ -25,10 +21,11 @@ pub struct Match {
 
 #[macro_export]
 macro_rules! rule {
-    ($regex:expr, $scope:expr) => {
+    ($regex:expr, $scope:expr, $precedence:expr) => {
         Rule {
             regex: $regex.to_string(),
             scope: $scope.to_string(),
+            precedence: $precedence.to_string(),
         }
     };
 }
