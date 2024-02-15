@@ -23,6 +23,7 @@ impl RustLang {
             name: String::from("Rust"),
             extensions: vec![String::from("rs")],
             rules,
+            sorted: false,
         }
     }
     pub fn keywords() -> Vec<Rule> {
