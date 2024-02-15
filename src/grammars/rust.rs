@@ -3,6 +3,13 @@ use crate::rule;
 
 pub struct RustLang;
 
+const COMMENTS: usize = 0;
+const STRINGS: usize = 1;
+const KEYWORDS: usize = 2;
+const IDENTIFIERS: usize = 3;
+const NUMBERS: usize = 4;
+const PUNCTUATION: usize = 5;
+
 impl RustLang {
     pub fn grammar() -> Grammar {
         let mut rules = Vec::new();

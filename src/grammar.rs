@@ -25,7 +25,7 @@ macro_rules! rule {
         Rule {
             regex: $regex.to_string(),
             scope: $scope.to_string(),
-            precedence: $precedence.to_string(),
+            precedence: $precedence,
         }
     };
 }
