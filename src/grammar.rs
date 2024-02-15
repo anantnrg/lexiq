@@ -23,8 +23,14 @@ pub struct Match {
 }
 
 #[derive(Debug, Clone)]
-pub(crate) struct CompiledGrammar {
-    pub(crate) rules: Vec<(String, Regex)>,
+pub struct CompiledGrammar {
+    pub rules: Vec<CompiledRule>,
+}
+
+#[derive(Debug, Clone)]
+pub struct CompiledRule {
+    pub regex: Regex,
+    pub scope: String,
 }
 
 #[macro_export]
@@ -43,18 +49,48 @@ impl Grammar {
         self.rules.sort_by_key(|rule| rule.precedence);
     }
 
-    #[allow(private_interfaces)]
     pub fn compile(&mut self) -> CompiledGrammar {
         let mut compiled_rules = Vec::new();
 
         for rule in &self.rules {
             if let Ok(regex) = Regex::new(&rule.regex) {
-                compiled_rules.push((rule.scope.clone(), regex))
+                compiled_rules.push(CompiledRule {
+                    regex,
+                    scope: rule.scope.clone(),
+                })
+            } else {
+                // TODO: Properly handle errors, maybe through anyhow
+                println!("failed to compile regex: {}", rule.regex);
             }
         }
 
         CompiledGrammar {
             rules: compiled_rules,
         }
+    }
+}
+
+impl CompiledGrammar {
+    pub fn tokenize<S: AsRef<str>>(&self, input: S) -> Vec<Match> {
+        let mut matches: Vec<Match> = Vec::new();
+        let mut current_position = 0;
+        'outer: while current_position < input.as_ref().len() {
+            for rule in &self.rules {
+                if let Some(mat) = rule.regex.find_at(input.as_ref(), current_position) {
+                    let (start, end) = (mat.start(), mat.end());
+                    if !matches.iter().any(|m| m.start == start && m.end == end) {
+                        matches.push(Match {
+                            start,
+                            end,
+                            scope: rule.scope.clone(),
+                        });
+                        current_position = end;
+                        continue 'outer;
+                    }
+                }
+            }
+            break;
+        }
+        matches
     }
 }
