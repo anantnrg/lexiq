@@ -6,15 +6,7 @@ use serde::{Deserialize, Serialize};
 pub struct Grammar {
     pub name: String,
     pub extensions: Vec<String>,
-    pub syntax: Syntax,
-}
-
-#[derive(Deserialize, Serialize, Debug, Clone)]
-pub struct Syntax {
-    pub keywords: Vec<Rule>,
-    pub punctuation: Vec<Rule>,
-    pub data: Vec<Rule>,
-    pub comments: Vec<Rule>,
+    pub rules: Vec<Rule>,
 }
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
