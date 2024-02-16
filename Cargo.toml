@@ -1,3 +1,4 @@
+workspace = { members = ["crates/lexiq-lang-rust"] }
 [package]
 name = "lexiq"
 version = "0.1.0"
@@ -9,3 +10,6 @@ edition = "2021"
 regex = { package = "fancy-regex", git = "https://github.com/fancy-regex/fancy-regex" }
 serde = { version = "1.0.196", features = ["derive"] }
 serde_yaml = "0.9.31"
+
+[dev-dependencies]
+lang_rust = { package = "lexiq-lang-rust", path = "crates/lexiq-lang-rust" }

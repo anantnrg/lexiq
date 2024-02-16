@@ -69,8 +69,26 @@ name = "lexiq"
 version = "0.1.0"
 dependencies = [
  "fancy-regex",
+ "lexiq-lang-rust",
  "serde",
  "serde_yaml",
+]
+
+[[package]]
+name = "lexiq"
+version = "0.1.0"
+source = "git+https://github.com/anantnrg/lexiq#5039243803f4086103cd7f092e9479bfc7ed9438"
+dependencies = [
+ "fancy-regex",
+ "serde",
+ "serde_yaml",
+]
+
+[[package]]
+name = "lexiq-lang-rust"
+version = "0.1.0"
+dependencies = [
+ "lexiq 0.1.0 (git+https://github.com/anantnrg/lexiq)",
 ]
 
 [[package]]

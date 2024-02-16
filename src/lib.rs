@@ -1,5 +1,4 @@
 pub mod grammar;
-pub mod grammars;
 
 use grammar::Grammar;
 

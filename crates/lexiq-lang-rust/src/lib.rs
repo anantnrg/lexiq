@@ -1,5 +1,5 @@
-use crate::grammar::{Grammar, Rule};
-use crate::rule;
+use lexiq::grammar::{Grammar, Rule};
+use lexiq::rule;
 
 pub struct RustLang;
 

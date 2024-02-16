@@ -1,4 +1,4 @@
-use lexiq::grammars::rust::RustLang;
+use lang_rust::RustLang;
 
 fn main() {
     let mut grammar = RustLang::grammar();
