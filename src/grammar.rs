@@ -1,4 +1,4 @@
-use regex::{Match, Regex};
+use regex::Regex;
 
 #[derive(Debug, Clone)]
 pub struct Grammar {
@@ -106,7 +106,7 @@ impl CompiledGrammar {
                 }
             }
             if !found {
-                cursor += 1; // No match found, advance cursor
+                cursor += 1;
             }
         }
 
