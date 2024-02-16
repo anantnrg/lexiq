@@ -125,6 +125,13 @@ impl RustLang {
     }
     pub fn punctuation() -> Vec<Rule> {
         vec![
+            rule!(r"\{(?!\{)|\}(?!\})", "punctuation.curly-brace", PUNCTUATION),
+            rule!(
+                r"\[(?!\[)|\](?!\])",
+                "punctuation.square-brace",
+                PUNCTUATION
+            ),
+            rule!(r"\{(?!\{)|\}(?!\})", "punctuation.parentheses", PUNCTUATION),
             rule!(r"\+(?!\+)", "punctuation.plus", PUNCTUATION),
             rule!(r#"\-(?!\-)"#, "punctuation.minus", PUNCTUATION),
             rule!(r#"\*(?!\*)"#, "punctuation.star", PUNCTUATION),
@@ -181,6 +188,11 @@ impl RustLang {
             ),
             rule!(r#"\b\d+(\.\d+)?[eE][+-]?\d+\b"#, "data.float", NUMBERS),
             rule!(r#"\b'\w+"\b"#, "data.lifetime", LIFETIMES),
+            rule!(
+                r#""(\\.|[^"\\])*"|'(\\.|[^'\\])*'|b"(\\.|[^"\\])*"|b'(\\.|[^'\\])*'|r(#*)"(\\.|[^"\\]|"(?!"\#)|\#(?!")|"(?=#[^"]*$))*"|br(#*)"(\\.|[^"\\]|"(?!"\#)|\#(?!")|"(?=#[^"]*$))*""#,
+                "data.alphabetical",
+                STRINGS
+            ),
         ]
     }
     pub fn comments() -> Vec<Rule> {

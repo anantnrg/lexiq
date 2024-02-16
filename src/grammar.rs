@@ -50,6 +50,10 @@ impl Grammar {
     }
 
     pub fn compile(&mut self) -> CompiledGrammar {
+        if !self.sorted {
+            self.sort();
+            self.sorted = true;
+        }
         let mut compiled_rules = Vec::new();
 
         for rule in &self.rules {
